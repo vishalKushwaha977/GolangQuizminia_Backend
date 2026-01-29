@@ -1,9 +1,7 @@
 package routes
 
-import "github.com/gorilla/mux"
+import "github.com/gin-gonic/gin"
 
-func SetupRoutes() *mux.Router {
-	r := mux.NewRouter()
+func SetupRoutes(r *gin.Engine) {
 	AdminRoutes(r)
-	return r
 }

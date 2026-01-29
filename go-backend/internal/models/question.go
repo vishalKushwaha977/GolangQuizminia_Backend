@@ -3,6 +3,7 @@ package models
 import "time"
 
 type Question struct {
+	
 	QuestionsNo int64  `json:"questions_no"`
 	Question    string `json:"question"`
 

@@ -2,18 +2,18 @@ package main
 
 import (
 	"log"
-	"net/http"
 	"go-backend/internal/db"
-	"go-backend/internal/middleware"
 	"go-backend/internal/routes"
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 )
-
 func main() {
 	db.ConnectDB()
-	r := routes.SetupRoutes()
-	
-	handler := middleware.EnableCOROS(r)
-
+	r := gin.Default()
+	// CORS
+	r.Use(cors.Default())
+	// Routes
+	routes.SetupRoutes(r)
 	log.Println("Server started on :8080")
-	log.Fatal(http.ListenAndServe(":8080", handler))
+	r.Run(":8080")
 }
